@@ -1,0 +1,34 @@
+# Requirements para DocumentosGestta
+
+# Interface Gráfica
+PyQt5==5.15.9
+PyQt5-Qt5==5.15.2
+
+# HTTP e API
+requests==2.31.0
+urllib3==2.0.7
+
+# Agendamento
+schedule==1.2.1
+APScheduler==3.10.4
+
+# Visualização e Dashboards
+matplotlib==3.8.2
+numpy==1.25.2
+
+# Utilitários
+python-dateutil==2.8.2
+
+# Logging e Configuração
+colorama==0.4.6
+
+# Sistema de arquivos
+pathlib2==2.3.7
+
+# Compressão (embutido no Python, mas para compatibilidade)
+# zipfile (built-in)
+# shutil (built-in)
+# subprocess (built-in)
+
+# Outros utilitários do Python padrão
+# os, sys, json, time, datetime, re (built-in)
