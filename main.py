@@ -3,7 +3,7 @@ import os
 import sys
 import argparse
 from logger_config import logger
-from processing import programar_verificacoes, executar_verificacao_horaria
+from processing import programar_verificacoes, realizar_processamento
 from PyQt5.QtWidgets import QApplication
 from gui import GesttaConfigurador, set_app_style
 from logging_config import configure_logging
@@ -42,7 +42,7 @@ def main():
                 logger.info(f"Executando com datas personalizadas:")
                 logger.info(f"Data inicial: {args.start_date or 'hoje'}")
                 logger.info(f"Data final: {args.end_date or args.start_date or 'hoje'}")
-                executar_verificacao_horaria(args.start_date, args.end_date)
+                realizar_processamento(args.start_date, args.end_date)
             else:
                 programar_verificacoes()
         except KeyboardInterrupt:

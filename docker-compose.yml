@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: gestta_documentos_app
+    network_mode: host
+    ports:
+      - "5010:5010"
+    
+      
+    volumes:
+      # Mapeia os caminhos fixos do host para os caminhos dentro do contêiner
+      - /home/roboestatistica/Downloads/gestta_temp:/app/downloads
+      - /home/roboestatistica/rede:/home/roboestatistica/rede

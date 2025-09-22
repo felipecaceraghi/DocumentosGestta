@@ -7,11 +7,28 @@ from logger_config import logger
 from config import CONFIG_FILE, DOWNLOAD_BASE_DIR, DEBUG_MODE
 from api import (get_token, get_all_companies, get_all_users, search_all_customer_tasks,
                  get_task_detail, process_task_documents, update_task_status)
-from dashboard import gerar_dashboard_estatisticas
+# from dashboard import gerar_dashboard_estatisticas
 import subprocess
 from file_utils import sanitize_filename, truncate_name, iso_to_mes_ano, safe_move_folder, monta_caminho_contabil, monta_caminho_fiscal
 from debug_utils import create_task_debug_folder
 import config as config_module
+from pathlib import Path
+
+TASK_PHRASES_FILE = Path(__file__).resolve().parent / 'task_phrases.json'
+
+def load_task_phrases():
+    try:
+        if TASK_PHRASES_FILE.exists():
+            with open(TASK_PHRASES_FILE, 'r', encoding='utf-8') as f:
+                phrases = json.load(f)
+                return phrases.get('fiscal_phrases', []), phrases.get('contabil_phrases', [])
+        else:
+            logger.warning(f"Arquivo de frases de tarefas não encontrado: {TASK_PHRASES_FILE}. Usando frases padrão.")
+    except json.JSONDecodeError as e:
+        logger.error(f"Erro ao decodificar {TASK_PHRASES_FILE}: {e}. Usando frases padrão.")
+    except Exception as e:
+        logger.error(f"Erro ao carregar frases de tarefas: {e}. Usando frases padrão.")
+    return [], [] # Default empty lists
 
 def carregar_configuracoes():
     try:
@@ -118,13 +135,13 @@ def realizar_processamento(start_date=None, end_date=None, force_execution=False
         tasks_today = search_all_customer_tasks(token, company_ids, user_ids, alert_date_str_ini, alert_date_str_fim)
         estatisticas["tarefas_verificadas"] = len(tasks_today)
 
-        phrases_fiscal = ["envio de documentos fiscais", "envio  de documentos fiscais", "envio do bloco" ,"das notas fiscais de entrada para classificação", "cobrança de documentos fiscais", "envio dos documentos fiscais", "envio do informe de rendimentos financeiros - trimestre", "cobrança do informe de rendimentos financeiros - trimestre", "envio da relação dos recebimentos"]
-        phrase_contabil = "cobrança de documentos contábeis"
+        fiscal_phrases, contabil_phrases = load_task_phrases()
+        all_phrases = fiscal_phrases + contabil_phrases
         filtered_tasks = []
         
         for task in tasks_today:
             name_lower = task.get("name", "").lower()
-            if any(phrase in name_lower for phrase in phrases_fiscal) or phrase_contabil in name_lower:
+            if any(phrase in name_lower for phrase in all_phrases):
                 filtered_tasks.append(task)
         
         logger.info(f"Encontradas {len(filtered_tasks)} tarefas de cobrança de documentos com vencimento hoje")
@@ -168,7 +185,7 @@ def realizar_processamento(start_date=None, end_date=None, force_execution=False
                 from api import send_task_comment
                 
                 tipo_fechamento = "contábil"
-                if "fiscal" in task_name.lower():
+                if any(phrase in task_name.lower() for phrase in fiscal_phrases):
                     tipo_fechamento = "fiscal"
                     
                 customers_list = detail.get("customers", [])
@@ -207,7 +224,7 @@ def realizar_processamento(start_date=None, end_date=None, force_execution=False
                 estatisticas["tarefas_sem_documentos"] += 1
                 
                 tipo_fechamento = "contábil"
-                if "fiscal" in task_name.lower():
+                if any(phrase in task_name.lower() for phrase in fiscal_phrases):
                     tipo_fechamento = "fiscal"
                     
                 from api import send_task_comment
@@ -265,8 +282,8 @@ def realizar_processamento(start_date=None, end_date=None, force_execution=False
         logger.info(f"Alertas Enviados: {estatisticas['alertas_enviados']}")
         logger.info(f"Tarefas Processadas com Sucesso: {estatisticas['tarefas_processadas_com_sucesso']}")
         logger.info(f"Documentos Baixados: {estatisticas['documentos_baixados']}")
-        imagem_path = gerar_dashboard_estatisticas(estatisticas)
-        logger.info(f"Dashboard de estatísticas salvo em: {imagem_path}")
+        # imagem_path = gerar_dashboard_estatisticas(estatisticas)
+        # logger.info(f"Dashboard de estatísticas salvo em: {imagem_path}")
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         log_path = os.path.join("logs", f"execucao_{timestamp}.txt")
         with open(log_path, 'w', encoding='utf-8') as f:
@@ -281,46 +298,33 @@ def realizar_processamento(start_date=None, end_date=None, force_execution=False
             f.write(f"Documentos Baixados: {estatisticas['documentos_baixados']}\n")
         logger.info(f"Log de execução salvo em: {log_path}")
         logger.info("Execução finalizada com sucesso.")
+        # Persist a JSON summary so frontend can display it
+        summary_path = os.path.join("logs", f"last_run_summary_{timestamp}.json")
         try:
-            os.startfile(imagem_path)
-        except:
-            logger.warning("Não foi possível abrir o dashboard automaticamente.")
+            with open(summary_path, 'w', encoding='utf-8') as sf:
+                json.dump(estatisticas, sf, default=str, indent=2)
+            logger.info(f"Resumo da execução salvo em: {summary_path}")
+        except Exception as e:
+            logger.warning(f"Não foi possível salvar resumo da execução: {e}")
         return True
     except Exception as e:
         logger.error(f"Erro durante o processamento: {str(e)}", exc_info=True)
+        # write a minimal summary even on error
+        try:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            summary_path = os.path.join("logs", f"last_run_summary_{timestamp}.json")
+            with open(summary_path, 'w', encoding='utf-8') as sf:
+                err_summary = {"error": str(e), "data_hora": datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+                json.dump(err_summary, sf, default=str, indent=2)
+            logger.info(f"Resumo (erro) salvo em: {summary_path}")
+        except Exception:
+            logger.debug('Falha ao gravar resumo de erro')
         return False
 
-def executar_verificacao_horaria(start_date=None, end_date=None, force_execution=False):
-    """
-    Executa uma única verificação de tarefas.
-    
-    Args:
-        start_date (str, optional): Data inicial para busca de tarefas.
-        end_date (str, optional): Data final para busca de tarefas.
-        force_execution (bool, optional): Parâmetro mantido para compatibilidade, mas não utilizado.
-        
-    Returns:
-        bool: True se a verificação foi realizada com sucesso, False caso contrário.
-    """
-    logger.info(f"Executando verificação horária.")
-    
-    try:
-        # Removida a verificação de horário (18h)
-        
-        # Executar o processamento
-        processos_ok = realizar_processamento(start_date, end_date)
-        
-        if processos_ok:
-            logger.info("Verificação horária concluída com sucesso.")
-        else:
-            logger.warning("Verificação horária completou, mas com erros.")
-        return processos_ok
-    except Exception as e:
-        logger.error(f"Erro durante verificação horária: {str(e)}", exc_info=True)
-        return False
+# The hourly verification function was removed — use realizar_processamento directly.
 
 def programar_verificacoes():
-    schedule.every().day.at("05:00").do(executar_verificacao_horaria)
+    schedule.every().day.at("05:00").do(lambda: realizar_processamento())
     logger.info("Sistema iniciado com verificação diária configurada.")
     logger.info("Primeira execução iniciando agora...")
     
@@ -337,9 +341,9 @@ def programar_verificacoes():
     
     if start_date or end_date:
         logger.info(f"Executando com datas personalizadas: {start_date or 'hoje'} até {end_date or start_date or 'hoje'}")
-        executar_verificacao_horaria(start_date, end_date)
+        realizar_processamento(start_date, end_date)
     else:
-        executar_verificacao_horaria()
+        realizar_processamento()
         
     while True:
         schedule.run_pending()

@@ -1,0 +1,515 @@
+2025-09-15 14:50:15,584 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 14:50:15,584 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 14:50:15,586 - INFO -  * Restarting with stat
+2025-09-15 14:50:15,760 - WARNING -  * Debugger is active!
+2025-09-15 14:50:15,781 - INFO -  * Debugger PIN: 597-568-957
+2025-09-15 14:50:18,093 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:18] "[32mGET / HTTP/1.1[0m" 302 -
+2025-09-15 14:50:18,105 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:18] "GET /login HTTP/1.1" 200 -
+2025-09-15 14:50:18,179 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-15 14:50:26,237 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-15 14:50:26,237 - INFO - Senha possui 12 caracteres
+2025-09-15 14:50:27,013 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@@"}'
+2025-09-15 14:50:27,013 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '79'}
+2025-09-15 14:50:27,013 - INFO - Response Status: 401
+2025-09-15 14:50:27,013 - INFO - Response Text: {"code":"unauthorized"}
+2025-09-15 14:50:27,013 - ERROR - Erro no login: 401, {"code":"unauthorized"}
+2025-09-15 14:50:27,014 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:27] "POST /login HTTP/1.1" 200 -
+2025-09-15 14:50:33,695 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-15 14:50:33,695 - INFO - Senha possui 11 caracteres
+2025-09-15 14:50:34,903 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-15 14:50:34,903 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-15 14:50:34,903 - INFO - Response Status: 200
+2025-09-15 14:50:34,903 - INFO - Response Text: 
+2025-09-15 14:50:34,903 - INFO - Token obtido com sucesso.
+2025-09-15 14:50:34,904 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:34] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-09-15 14:50:34,910 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:34] "GET / HTTP/1.1" 200 -
+2025-09-15 14:50:35,966 - INFO - 1491 empresas carregadas.
+2025-09-15 14:50:35,984 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:35] "GET /companies HTTP/1.1" 200 -
+2025-09-15 14:50:38,661 - INFO - Página 1: 254 usuários.
+2025-09-15 14:50:38,662 - INFO - Total de usuários: 254
+2025-09-15 14:50:38,665 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:38] "GET /users HTTP/1.1" 200 -
+2025-09-15 14:50:54,434 - INFO - 1491 empresas carregadas.
+2025-09-15 14:50:54,452 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:54] "GET /companies HTTP/1.1" 200 -
+2025-09-15 14:50:56,321 - INFO - Página 1: 254 usuários.
+2025-09-15 14:50:56,321 - INFO - Total de usuários: 254
+2025-09-15 14:50:56,325 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:56] "GET /users HTTP/1.1" 200 -
+2025-09-15 14:50:57,440 - INFO - 1491 empresas carregadas.
+2025-09-15 14:50:57,456 - INFO - 127.0.0.1 - - [15/Sep/2025 14:50:57] "GET /companies HTTP/1.1" 200 -
+2025-09-15 14:52:05,256 - INFO - 127.0.0.1 - - [15/Sep/2025 14:52:05] "[32mPOST /save_selection HTTP/1.1[0m" 302 -
+2025-09-15 14:52:05,260 - INFO - 127.0.0.1 - - [15/Sep/2025 14:52:05] "GET / HTTP/1.1" 200 -
+2025-09-15 14:52:06,349 - INFO - 1491 empresas carregadas.
+2025-09-15 14:52:06,371 - INFO - 127.0.0.1 - - [15/Sep/2025 14:52:06] "GET /companies HTTP/1.1" 200 -
+2025-09-15 14:53:03,109 - INFO -  * Detected change in '/home/roboestatistica/Documents/GitHub/DocumentosGestta/app.py', reloading
+2025-09-15 14:53:03,133 - INFO -  * Restarting with stat
+2025-09-15 14:53:03,947 - INFO - Failed to extract font properties from /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf: In FT2Font: Can not load face (unknown file format; error code 0x2)
+2025-09-15 14:53:04,142 - INFO - generated new fontManager
+2025-09-15 14:53:04,294 - WARNING -  * Debugger is active!
+2025-09-15 14:53:04,297 - INFO -  * Debugger PIN: 597-568-957
+2025-09-15 14:53:07,312 - INFO -  * Detected change in '/home/roboestatistica/Documents/GitHub/DocumentosGestta/app.py', reloading
+2025-09-15 14:53:07,405 - INFO -  * Restarting with stat
+2025-09-15 14:53:07,827 - WARNING -  * Debugger is active!
+2025-09-15 14:53:07,831 - INFO -  * Debugger PIN: 597-568-957
+2025-09-15 14:54:35,599 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:35] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:35,620 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:35] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-09-15 14:54:35,623 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:35] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-09-15 14:54:35,645 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:35] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=QHyvjUk6uQ4v0JnOcrng HTTP/1.1" 200 -
+2025-09-15 14:54:35,653 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:35] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-09-15 14:54:36,736 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:36] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:36,745 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:36] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-09-15 14:54:36,745 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:36] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-09-15 14:54:36,801 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:36] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=QHyvjUk6uQ4v0JnOcrng HTTP/1.1[0m" 304 -
+2025-09-15 14:54:36,810 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:36] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-09-15 14:54:38,682 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 14:54:38,682 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 14:54:38,683 - INFO -  * Restarting with stat
+2025-09-15 14:54:39,109 - WARNING -  * Debugger is active!
+2025-09-15 14:54:39,112 - INFO -  * Debugger PIN: 597-568-957
+2025-09-15 14:54:41,629 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:41] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:41,646 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:41] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-09-15 14:54:41,646 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:41] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-09-15 14:54:41,664 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:41] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=jF2aeVnp4EPSERHaeF13 HTTP/1.1" 200 -
+2025-09-15 14:54:41,670 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:41] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,228 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:42,239 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,240 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,251 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=jF2aeVnp4EPSERHaeF13 HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,257 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,391 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:42,405 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,406 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,421 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=jF2aeVnp4EPSERHaeF13 HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,431 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,622 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:42,633 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,633 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,640 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=jF2aeVnp4EPSERHaeF13 HTTP/1.1[0m" 304 -
+2025-09-15 14:54:42,653 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:42] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-09-15 14:54:47,585 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 14:54:47,585 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 14:54:47,585 - INFO -  * Restarting with stat
+2025-09-15 14:54:48,046 - WARNING -  * Debugger is active!
+2025-09-15 14:54:48,050 - INFO -  * Debugger PIN: 597-568-957
+2025-09-15 14:54:50,866 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:50] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:50,884 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:50] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-09-15 14:54:50,886 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:50] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-09-15 14:54:50,893 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:50] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=sI4mECJnlNzVuocfOHTj HTTP/1.1" 200 -
+2025-09-15 14:54:50,900 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:50] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-09-15 14:54:51,373 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:51] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-09-15 14:54:51,382 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:51] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-09-15 14:54:51,383 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:51] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-09-15 14:54:51,397 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:51] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=sI4mECJnlNzVuocfOHTj HTTP/1.1[0m" 304 -
+2025-09-15 14:54:51,406 - INFO - 127.0.0.1 - - [15/Sep/2025 14:54:51] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2025-09-15 15:10:47,733 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 15:10:47,733 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 15:10:47,733 - INFO -  * Restarting with stat
+2025-09-15 15:10:48,137 - WARNING -  * Debugger is active!
+2025-09-15 15:10:48,141 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 15:10:49,877 - INFO - 127.0.0.1 - - [15/Sep/2025 15:10:49] "GET / HTTP/1.1" 200 -
+2025-09-15 15:10:50,915 - INFO - 1491 empresas carregadas.
+2025-09-15 15:10:50,942 - INFO - 127.0.0.1 - - [15/Sep/2025 15:10:50] "GET /companies HTTP/1.1" 200 -
+2025-09-15 15:10:54,173 - INFO - 1491 empresas carregadas.
+2025-09-15 15:10:54,191 - INFO - 127.0.0.1 - - [15/Sep/2025 15:10:54] "GET /companies HTTP/1.1" 200 -
+2025-09-15 15:11:00,050 - INFO - Executando verificação horária.
+2025-09-15 15:11:00,051 - INFO - 127.0.0.1 - - [15/Sep/2025 15:11:00] "[32mGET /run HTTP/1.1[0m" 302 -
+2025-09-15 15:11:00,051 - INFO - ===== INICIANDO PROCESSAMENTO =====
+2025-09-15 15:11:00,051 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-15 15:11:00,052 - INFO - Senha possui 11 caracteres
+2025-09-15 15:11:00,054 - INFO - 127.0.0.1 - - [15/Sep/2025 15:11:00] "GET / HTTP/1.1" 200 -
+2025-09-15 15:11:01,256 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-15 15:11:01,256 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-15 15:11:01,256 - INFO - Response Status: 200
+2025-09-15 15:11:01,256 - INFO - Response Text: 
+2025-09-15 15:11:01,256 - INFO - Token obtido com sucesso.
+2025-09-15 15:11:01,257 - INFO - Modo DEBUG: Desativado
+2025-09-15 15:11:01,257 - INFO - Diretório de download: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads
+2025-09-15 15:11:01,257 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-15 15:11:01,257 - INFO - Senha possui 11 caracteres
+2025-09-15 15:11:01,386 - INFO - 1491 empresas carregadas.
+2025-09-15 15:11:01,401 - INFO - 127.0.0.1 - - [15/Sep/2025 15:11:01] "GET /companies HTTP/1.1" 200 -
+2025-09-15 15:11:05,325 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-15 15:11:05,325 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-15 15:11:05,325 - INFO - Response Status: 200
+2025-09-15 15:11:05,325 - INFO - Response Text: 
+2025-09-15 15:11:05,325 - INFO - Token obtido com sucesso.
+2025-09-15 15:11:06,734 - INFO - 1491 empresas carregadas.
+2025-09-15 15:11:07,568 - INFO - Página 1: 254 usuários.
+2025-09-15 15:11:07,568 - INFO - Total de usuários: 254
+2025-09-15 15:11:07,569 - INFO - Processando 1491 empresas e 254 usuários
+2025-09-15 15:11:07,569 - INFO - [PROCESSAMENTO] Buscando tarefas com vencimento hoje: 15/09/2025
+2025-09-15 15:11:09,692 - INFO - Página 1: 186 tarefas retornadas.
+2025-09-15 15:11:10,575 - INFO - Página 2: 0 tarefas retornadas.
+2025-09-15 15:11:10,575 - INFO - Total de tarefas coletadas: 186
+2025-09-15 15:11:10,576 - INFO - Encontradas 5 tarefas de cobrança de documentos com vencimento hoje
+2025-09-15 15:11:10,576 - INFO - Processando tarefa: Cobrança de Documentos Contábeis (Com./Ind.) 08/2025 (ID: 68c805a0774af5ec871203d9)
+2025-09-15 15:11:11,405 - INFO - Verificação completa: 9/9 documentos com upload. Resultado: True
+2025-09-15 15:11:11,405 - INFO - Verificação parcial: 9/9 documentos com upload. Resultado: True
+2025-09-15 15:11:11,405 - INFO - Tarefa 68c805a0774af5ec871203d9 possui todos os documentos. Realizando download.
+2025-09-15 15:11:11,405 - INFO - Verificação parcial: 9/9 documentos com upload. Resultado: True
+2025-09-15 15:11:11,405 - INFO - Diretório base para download: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads
+2025-09-15 15:11:11,405 - INFO - Pasta específica para a tarefa: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_151111
+2025-09-15 15:11:11,405 - INFO - Pasta para download criada: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_151111
+2025-09-15 15:11:11,405 - INFO - [DOWNLOAD] Solicitando download de todos os documentos da tarefa 68c805a0774af5ec871203d9
+2025-09-15 15:11:11,405 - INFO - [DOWNLOAD] Solicitando document identifier para tarefa 68c805a0774af5ec871203d9
+2025-09-15 15:11:11,899 - INFO - [DOWNLOAD] Document identifier obtido: 5ba527056235154f5f0b90f2-68c805a0774af5ec871203d9-42be6848-c7b9-4154-8150-4033229b7d49
+2025-09-15 15:11:11,899 - INFO - [DOWNLOAD] Aguardando preparação do arquivo ZIP para tarefa 68c805a0774af5ec871203d9...
+2025-09-15 15:11:12,026 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 1/30)
+2025-09-15 15:11:14,162 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 2/30)
+2025-09-15 15:11:17,287 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 3/30)
+2025-09-15 15:11:21,933 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 4/30)
+2025-09-15 15:11:28,807 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 5/30)
+2025-09-15 15:11:39,060 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 6/30)
+2025-09-15 15:11:54,372 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 7/30)
+2025-09-15 15:12:17,278 - INFO - [DOWNLOAD] ZIP pronto após 8 verificações. Baixando...
+2025-09-15 15:12:17,278 - INFO - [DOWNLOAD] Caminho final do arquivo ZIP: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_151111/task_68c805a0774af5ec871203d9.zip
+2025-09-15 15:12:17,279 - INFO - Teste de escrita bem-sucedido em: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_151111
+2025-09-15 15:26:30,236 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 15:26:30,236 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 15:26:30,237 - INFO -  * Restarting with stat
+2025-09-15 15:26:30,729 - WARNING -  * Debugger is active!
+2025-09-15 15:26:30,733 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 15:26:32,626 - INFO - 127.0.0.1 - - [15/Sep/2025 15:26:32] "GET / HTTP/1.1" 200 -
+2025-09-15 15:26:33,762 - INFO - 1491 empresas carregadas.
+2025-09-15 15:26:33,781 - INFO - 127.0.0.1 - - [15/Sep/2025 15:26:33] "GET /companies HTTP/1.1" 200 -
+2025-09-15 15:26:43,332 - INFO - Executando verificação horária.
+2025-09-15 15:26:43,332 - INFO - 127.0.0.1 - - [15/Sep/2025 15:26:43] "[32mGET /run HTTP/1.1[0m" 302 -
+2025-09-15 15:26:43,332 - INFO - ===== INICIANDO PROCESSAMENTO =====
+2025-09-15 15:26:43,333 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-15 15:26:43,334 - INFO - Senha possui 11 caracteres
+2025-09-15 15:26:43,336 - INFO - 127.0.0.1 - - [15/Sep/2025 15:26:43] "GET / HTTP/1.1" 200 -
+2025-09-15 15:26:44,256 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-15 15:26:44,256 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-15 15:26:44,256 - INFO - Response Status: 200
+2025-09-15 15:26:44,256 - INFO - Response Text: 
+2025-09-15 15:26:44,256 - INFO - Token obtido com sucesso.
+2025-09-15 15:26:44,258 - INFO - Modo DEBUG: Desativado
+2025-09-15 15:26:44,258 - INFO - Diretório de download: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads
+2025-09-15 15:26:44,258 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-15 15:26:44,258 - INFO - Senha possui 11 caracteres
+2025-09-15 15:26:45,310 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-15 15:26:45,310 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-15 15:26:45,310 - INFO - Response Status: 200
+2025-09-15 15:26:45,310 - INFO - Response Text: 
+2025-09-15 15:26:45,310 - INFO - Token obtido com sucesso.
+2025-09-15 15:26:45,528 - INFO - 1491 empresas carregadas.
+2025-09-15 15:26:45,549 - INFO - 127.0.0.1 - - [15/Sep/2025 15:26:45] "GET /companies HTTP/1.1" 200 -
+2025-09-15 15:26:46,540 - INFO - 1491 empresas carregadas.
+2025-09-15 15:26:47,175 - INFO - Página 1: 254 usuários.
+2025-09-15 15:26:47,175 - INFO - Total de usuários: 254
+2025-09-15 15:26:47,176 - INFO - Processando 1491 empresas e 254 usuários
+2025-09-15 15:26:47,176 - INFO - [PROCESSAMENTO] Buscando tarefas com vencimento hoje: 15/09/2025
+2025-09-15 15:26:49,198 - INFO - Página 1: 181 tarefas retornadas.
+2025-09-15 15:26:50,090 - INFO - Página 2: 0 tarefas retornadas.
+2025-09-15 15:26:50,090 - INFO - Total de tarefas coletadas: 181
+2025-09-15 15:26:50,091 - INFO - Encontradas 5 tarefas de cobrança de documentos com vencimento hoje
+2025-09-15 15:26:50,091 - INFO - Processando tarefa: Cobrança de Documentos Contábeis (Com./Ind.) 08/2025 (ID: 68c805a0774af5ec871203d9)
+2025-09-15 15:26:50,731 - INFO - Verificação completa: 9/9 documentos com upload. Resultado: True
+2025-09-15 15:26:50,731 - INFO - Verificação parcial: 9/9 documentos com upload. Resultado: True
+2025-09-15 15:26:50,731 - INFO - Tarefa 68c805a0774af5ec871203d9 possui todos os documentos. Realizando download.
+2025-09-15 15:26:50,731 - INFO - Verificação parcial: 9/9 documentos com upload. Resultado: True
+2025-09-15 15:26:50,731 - INFO - Diretório base para download: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads
+2025-09-15 15:26:50,731 - INFO - Pasta específica para a tarefa: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_152650
+2025-09-15 15:26:50,731 - INFO - Pasta para download criada: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_152650
+2025-09-15 15:26:50,731 - INFO - [DOWNLOAD] Solicitando download de todos os documentos da tarefa 68c805a0774af5ec871203d9
+2025-09-15 15:26:50,731 - INFO - [DOWNLOAD] Solicitando document identifier para tarefa 68c805a0774af5ec871203d9
+2025-09-15 15:26:51,220 - INFO - [DOWNLOAD] Document identifier obtido: 5ba527056235154f5f0b90f2-68c805a0774af5ec871203d9-5df9bc71-8d90-40f0-b0f2-c7cd0bc406a7
+2025-09-15 15:26:51,221 - INFO - [DOWNLOAD] Aguardando preparação do arquivo ZIP para tarefa 68c805a0774af5ec871203d9...
+2025-09-15 15:26:51,349 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 1/30)
+2025-09-15 15:26:53,501 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 2/30)
+2025-09-15 15:26:56,623 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 3/30)
+2025-09-15 15:27:01,247 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 4/30)
+2025-09-15 15:27:08,121 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 5/30)
+2025-09-15 15:27:18,374 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 6/30)
+2025-09-15 15:27:33,688 - INFO - [DOWNLOAD] Status atual: PENDING, aguardando... (tentativa 7/30)
+2025-09-15 15:27:56,615 - INFO - [DOWNLOAD] ZIP pronto após 8 verificações. Baixando...
+2025-09-15 15:27:56,615 - INFO - [DOWNLOAD] Caminho final do arquivo ZIP: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_152650/task_68c805a0774af5ec871203d9.zip
+2025-09-15 15:27:56,617 - INFO - Teste de escrita bem-sucedido em: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads/Cobrança_de_Documentos_Contábeis__Com__Ind___08_20_20250915_152650
+2025-09-15 17:09:39,859 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:09:39,859 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:09:39,861 - INFO -  * Restarting with stat
+2025-09-15 17:09:40,009 - WARNING -  * Debugger is active!
+2025-09-15 17:09:40,026 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:09:45,038 - INFO - 1491 empresas carregadas.
+2025-09-15 17:09:45,664 - INFO - Página 1: 254 usuários.
+2025-09-15 17:09:45,664 - INFO - Total de usuários: 254
+2025-09-15 17:09:45,710 - INFO - 127.0.0.1 - - [15/Sep/2025 17:09:45] "GET / HTTP/1.1" 200 -
+2025-09-15 17:09:45,725 - INFO - 127.0.0.1 - - [15/Sep/2025 17:09:45] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-09-15 17:14:58,074 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:14:58,074 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:14:58,074 - INFO -  * Restarting with stat
+2025-09-15 17:14:58,216 - WARNING -  * Debugger is active!
+2025-09-15 17:14:58,221 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:15:04,302 - INFO - 1491 empresas carregadas.
+2025-09-15 17:15:04,964 - INFO - Página 1: 254 usuários.
+2025-09-15 17:15:04,964 - INFO - Total de usuários: 254
+2025-09-15 17:15:04,973 - INFO - 127.0.0.1 - - [15/Sep/2025 17:15:04] "GET / HTTP/1.1" 200 -
+2025-09-15 17:15:15,403 - INFO - 1491 empresas carregadas.
+2025-09-15 17:15:16,034 - INFO - Página 1: 254 usuários.
+2025-09-15 17:15:16,034 - INFO - Total de usuários: 254
+2025-09-15 17:15:16,038 - INFO - 127.0.0.1 - - [15/Sep/2025 17:15:16] "GET / HTTP/1.1" 200 -
+2025-09-15 17:15:48,789 - INFO - 1491 empresas carregadas.
+2025-09-15 17:15:49,409 - INFO - Página 1: 254 usuários.
+2025-09-15 17:15:49,409 - INFO - Total de usuários: 254
+2025-09-15 17:15:49,414 - INFO - 127.0.0.1 - - [15/Sep/2025 17:15:49] "GET / HTTP/1.1" 200 -
+2025-09-15 17:15:52,752 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:15:52,752 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:15:52,753 - INFO -  * Restarting with stat
+2025-09-15 17:15:52,930 - WARNING -  * Debugger is active!
+2025-09-15 17:15:52,934 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:15:55,964 - INFO - 1491 empresas carregadas.
+2025-09-15 17:15:56,729 - INFO - Página 1: 254 usuários.
+2025-09-15 17:15:56,729 - INFO - Total de usuários: 254
+2025-09-15 17:15:56,737 - INFO - 127.0.0.1 - - [15/Sep/2025 17:15:56] "GET / HTTP/1.1" 200 -
+2025-09-15 17:26:05,489 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:26:05,489 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:26:05,490 - INFO -  * Restarting with stat
+2025-09-15 17:26:05,627 - WARNING -  * Debugger is active!
+2025-09-15 17:26:05,630 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:26:13,137 - INFO - 127.0.0.1 - - [15/Sep/2025 17:26:13] "[32mGET / HTTP/1.1[0m" 302 -
+2025-09-15 17:26:13,143 - INFO - 127.0.0.1 - - [15/Sep/2025 17:26:13] "GET /login HTTP/1.1" 200 -
+2025-09-15 17:26:13,248 - INFO - 127.0.0.1 - - [15/Sep/2025 17:26:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-15 17:26:26,476 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-15 17:26:26,476 - INFO - Senha possui 11 caracteres
+2025-09-15 17:26:27,331 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-15 17:26:27,331 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-15 17:26:27,331 - INFO - Response Status: 200
+2025-09-15 17:26:27,331 - INFO - Response Text: 
+2025-09-15 17:26:27,331 - INFO - Token obtido com sucesso.
+2025-09-15 17:26:27,332 - INFO - 127.0.0.1 - - [15/Sep/2025 17:26:27] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-09-15 17:26:28,780 - INFO - 1491 empresas carregadas.
+2025-09-15 17:26:29,427 - INFO - Página 1: 254 usuários.
+2025-09-15 17:26:29,427 - INFO - Total de usuários: 254
+2025-09-15 17:26:29,433 - INFO - 127.0.0.1 - - [15/Sep/2025 17:26:29] "GET / HTTP/1.1" 200 -
+2025-09-15 17:31:24,950 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:31:24,950 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:31:24,951 - INFO -  * Restarting with stat
+2025-09-15 17:31:25,104 - WARNING -  * Debugger is active!
+2025-09-15 17:31:25,108 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:31:29,791 - INFO - 1491 empresas carregadas.
+2025-09-15 17:31:30,596 - INFO - Página 1: 254 usuários.
+2025-09-15 17:31:30,596 - INFO - Total de usuários: 254
+2025-09-15 17:31:30,606 - INFO - 127.0.0.1 - - [15/Sep/2025 17:31:30] "GET / HTTP/1.1" 200 -
+2025-09-15 17:31:41,279 - INFO - 127.0.0.1 - - [15/Sep/2025 17:31:41] "[32mPOST /save_selection HTTP/1.1[0m" 302 -
+2025-09-15 17:31:42,301 - INFO - 1491 empresas carregadas.
+2025-09-15 17:31:43,037 - INFO - Página 1: 254 usuários.
+2025-09-15 17:31:43,037 - INFO - Total de usuários: 254
+2025-09-15 17:31:43,040 - INFO - 127.0.0.1 - - [15/Sep/2025 17:31:43] "GET / HTTP/1.1" 200 -
+2025-09-15 17:31:49,503 - INFO - 127.0.0.1 - - [15/Sep/2025 17:31:49] "[32mPOST /save_selection HTTP/1.1[0m" 302 -
+2025-09-15 17:31:50,606 - INFO - 1491 empresas carregadas.
+2025-09-15 17:31:51,220 - INFO - Página 1: 254 usuários.
+2025-09-15 17:31:51,220 - INFO - Total de usuários: 254
+2025-09-15 17:31:51,224 - INFO - 127.0.0.1 - - [15/Sep/2025 17:31:51] "GET / HTTP/1.1" 200 -
+2025-09-15 17:31:55,472 - INFO - 1491 empresas carregadas.
+2025-09-15 17:31:56,097 - INFO - Página 1: 254 usuários.
+2025-09-15 17:31:56,097 - INFO - Total de usuários: 254
+2025-09-15 17:31:56,100 - INFO - 127.0.0.1 - - [15/Sep/2025 17:31:56] "GET / HTTP/1.1" 200 -
+2025-09-15 17:36:03,619 - INFO -  * Detected change in '/home/roboestatistica/Documents/GitHub/DocumentosGestta/app.py', reloading
+2025-09-15 17:36:03,641 - INFO -  * Restarting with stat
+2025-09-15 17:36:03,785 - WARNING -  * Debugger is active!
+2025-09-15 17:36:03,789 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:36:55,173 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:36:55,173 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:36:55,173 - INFO -  * Restarting with stat
+2025-09-15 17:36:55,356 - WARNING -  * Debugger is active!
+2025-09-15 17:36:55,361 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:36:57,366 - INFO - 1491 empresas carregadas.
+2025-09-15 17:36:58,128 - INFO - Página 1: 254 usuários.
+2025-09-15 17:36:58,128 - INFO - Total de usuários: 254
+2025-09-15 17:36:58,139 - INFO - 127.0.0.1 - - [15/Sep/2025 17:36:58] "GET / HTTP/1.1" 200 -
+2025-09-15 17:36:58,295 - INFO - 1491 empresas carregadas.
+2025-09-15 17:36:59,045 - INFO - Página 1: 254 usuários.
+2025-09-15 17:36:59,045 - INFO - Total de usuários: 254
+2025-09-15 17:36:59,050 - INFO - 127.0.0.1 - - [15/Sep/2025 17:36:59] "GET / HTTP/1.1" 200 -
+2025-09-15 17:37:19,221 - INFO - 127.0.0.1 - - [15/Sep/2025 17:37:19] "[32mPOST /save_selection HTTP/1.1[0m" 302 -
+2025-09-15 17:37:20,227 - INFO - 1491 empresas carregadas.
+2025-09-15 17:37:20,956 - INFO - Página 1: 254 usuários.
+2025-09-15 17:37:20,956 - INFO - Total de usuários: 254
+2025-09-15 17:37:20,960 - INFO - 127.0.0.1 - - [15/Sep/2025 17:37:20] "GET / HTTP/1.1" 200 -
+2025-09-15 17:40:31,892 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:40:31,892 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:40:31,893 - INFO -  * Restarting with stat
+2025-09-15 17:40:32,045 - WARNING -  * Debugger is active!
+2025-09-15 17:40:32,049 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:40:35,087 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:40:35,088 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:40:35,088 - INFO -  * Restarting with stat
+2025-09-15 17:40:35,272 - WARNING -  * Debugger is active!
+2025-09-15 17:40:35,276 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:40:40,038 - INFO - 1491 empresas carregadas.
+2025-09-15 17:40:40,650 - INFO - Página 1: 254 usuários.
+2025-09-15 17:40:40,650 - INFO - Total de usuários: 254
+2025-09-15 17:40:40,661 - INFO - 127.0.0.1 - - [15/Sep/2025 17:40:40] "GET / HTTP/1.1" 200 -
+2025-09-15 17:40:48,948 - INFO - 1491 empresas carregadas.
+2025-09-15 17:40:49,618 - INFO - Página 1: 254 usuários.
+2025-09-15 17:40:49,618 - INFO - Total de usuários: 254
+2025-09-15 17:40:49,622 - INFO - 127.0.0.1 - - [15/Sep/2025 17:40:49] "GET / HTTP/1.1" 200 -
+2025-09-15 17:40:53,449 - INFO - 127.0.0.1 - - [15/Sep/2025 17:40:53] "[32mPOST /save_selection HTTP/1.1[0m" 302 -
+2025-09-15 17:40:55,727 - INFO - 1491 empresas carregadas.
+2025-09-15 17:40:56,359 - INFO - Página 1: 254 usuários.
+2025-09-15 17:40:56,359 - INFO - Total de usuários: 254
+2025-09-15 17:40:56,363 - INFO - 127.0.0.1 - - [15/Sep/2025 17:40:56] "GET / HTTP/1.1" 200 -
+2025-09-15 17:41:11,907 - INFO - 127.0.0.1 - - [15/Sep/2025 17:41:11] "[32mPOST /save_selection HTTP/1.1[0m" 302 -
+2025-09-15 17:41:13,120 - INFO - 1491 empresas carregadas.
+2025-09-15 17:41:13,355 - INFO - 127.0.0.1 - - [15/Sep/2025 17:41:13] "[32mPOST /save_selection HTTP/1.1[0m" 302 -
+2025-09-15 17:41:13,843 - INFO - Página 1: 254 usuários.
+2025-09-15 17:41:13,843 - INFO - Total de usuários: 254
+2025-09-15 17:41:13,847 - INFO - 127.0.0.1 - - [15/Sep/2025 17:41:13] "GET / HTTP/1.1" 200 -
+2025-09-15 17:41:15,471 - INFO - 1491 empresas carregadas.
+2025-09-15 17:41:16,203 - INFO - Página 1: 254 usuários.
+2025-09-15 17:41:16,203 - INFO - Total de usuários: 254
+2025-09-15 17:41:16,207 - INFO - 127.0.0.1 - - [15/Sep/2025 17:41:16] "GET / HTTP/1.1" 200 -
+2025-09-15 17:46:37,533 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-15 17:46:37,533 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-15 17:46:37,533 - INFO -  * Restarting with stat
+2025-09-15 17:46:37,707 - WARNING -  * Debugger is active!
+2025-09-15 17:46:37,711 - INFO -  * Debugger PIN: 124-487-956
+2025-09-15 17:46:42,264 - INFO - 1491 empresas carregadas.
+2025-09-15 17:46:43,025 - INFO - Página 1: 254 usuários.
+2025-09-15 17:46:43,025 - INFO - Total de usuários: 254
+2025-09-15 17:46:43,035 - INFO - 127.0.0.1 - - [15/Sep/2025 17:46:43] "GET / HTTP/1.1" 200 -
+2025-09-16 15:45:26,138 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-16 15:45:26,138 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-16 15:45:26,141 - INFO -  * Restarting with stat
+2025-09-16 15:45:26,284 - WARNING -  * Debugger is active!
+2025-09-16 15:45:26,290 - INFO -  * Debugger PIN: 455-130-295
+2025-09-16 15:45:31,195 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-16 15:45:31,195 - INFO - Senha possui 11 caracteres
+2025-09-16 15:45:32,105 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-16 15:45:32,106 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-16 15:45:32,106 - INFO - Response Status: 200
+2025-09-16 15:45:32,106 - INFO - Response Text: 
+2025-09-16 15:45:32,106 - INFO - Token obtido com sucesso.
+2025-09-16 15:45:32,109 - INFO - 127.0.0.1 - - [16/Sep/2025 15:45:32] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-09-16 15:45:33,424 - INFO - 1492 empresas carregadas.
+2025-09-16 15:45:34,060 - INFO - Página 1: 255 usuários.
+2025-09-16 15:45:34,060 - INFO - Total de usuários: 255
+2025-09-16 15:45:34,074 - INFO - 127.0.0.1 - - [16/Sep/2025 15:45:34] "GET / HTTP/1.1" 200 -
+2025-09-16 15:45:36,634 - INFO - 127.0.0.1 - - [16/Sep/2025 15:45:36] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-09-16 15:45:36,878 - INFO - 127.0.0.1 - - [16/Sep/2025 15:45:36] "GET /login HTTP/1.1" 200 -
+2025-09-16 15:45:38,275 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-16 15:45:38,275 - INFO - Senha possui 11 caracteres
+2025-09-16 15:45:39,135 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-16 15:45:39,135 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-16 15:45:39,135 - INFO - Response Status: 200
+2025-09-16 15:45:39,135 - INFO - Response Text: 
+2025-09-16 15:45:39,135 - INFO - Token obtido com sucesso.
+2025-09-16 15:45:39,136 - INFO - 127.0.0.1 - - [16/Sep/2025 15:45:39] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-09-16 15:45:40,340 - INFO - 1492 empresas carregadas.
+2025-09-16 15:45:41,047 - INFO - Página 1: 255 usuários.
+2025-09-16 15:45:41,047 - INFO - Total de usuários: 255
+2025-09-16 15:45:41,051 - INFO - 127.0.0.1 - - [16/Sep/2025 15:45:41] "GET / HTTP/1.1" 200 -
+2025-09-16 15:46:05,300 - INFO - 127.0.0.1 - - [16/Sep/2025 15:46:05] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-09-16 15:46:05,539 - INFO - 127.0.0.1 - - [16/Sep/2025 15:46:05] "GET /login HTTP/1.1" 200 -
+2025-09-17 10:25:41,176 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5010
+ * Running on http://192.168.52.90:5010
+2025-09-17 10:25:41,176 - INFO - [33mPress CTRL+C to quit[0m
+2025-09-17 10:25:41,178 - INFO -  * Restarting with stat
+2025-09-17 10:25:41,314 - WARNING -  * Debugger is active!
+2025-09-17 10:25:41,335 - INFO -  * Debugger PIN: 531-406-158
+2025-09-17 10:26:02,782 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:02] "[32mGET / HTTP/1.1[0m" 302 -
+2025-09-17 10:26:02,843 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:02] "GET /login HTTP/1.1" 200 -
+2025-09-17 10:26:03,040 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-17 10:26:09,337 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-17 10:26:09,338 - INFO - Senha possui 11 caracteres
+2025-09-17 10:26:13,251 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-17 10:26:13,251 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-17 10:26:13,251 - INFO - Response Status: 200
+2025-09-17 10:26:13,251 - INFO - Response Text: 
+2025-09-17 10:26:13,251 - INFO - Token obtido com sucesso.
+2025-09-17 10:26:13,253 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:13] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-09-17 10:26:15,377 - INFO - 1492 empresas carregadas.
+2025-09-17 10:26:16,109 - INFO - Página 1: 255 usuários.
+2025-09-17 10:26:16,109 - INFO - Total de usuários: 255
+2025-09-17 10:26:16,118 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:16] "GET / HTTP/1.1" 200 -
+2025-09-17 10:26:51,314 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:51] "[32mGET /run?start_date=2025-09-17&end_date=2025-09-17 HTTP/1.1[0m" 302 -
+2025-09-17 10:26:51,314 - INFO - ===== INICIANDO PROCESSAMENTO =====
+2025-09-17 10:26:51,315 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-17 10:26:51,315 - INFO - Senha possui 11 caracteres
+2025-09-17 10:26:52,138 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-17 10:26:52,138 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-17 10:26:52,138 - INFO - Response Status: 200
+2025-09-17 10:26:52,138 - INFO - Response Text: 
+2025-09-17 10:26:52,138 - INFO - Token obtido com sucesso.
+2025-09-17 10:26:52,140 - INFO - Modo DEBUG: Desativado
+2025-09-17 10:26:52,140 - INFO - Diretório de download: /home/roboestatistica/Documents/GitHub/DocumentosGestta/downloads
+2025-09-17 10:26:52,140 - INFO - Tentando login com email: felipe.caceraghi@gofurthergroup.com.br
+2025-09-17 10:26:52,140 - INFO - Senha possui 11 caracteres
+2025-09-17 10:26:52,311 - INFO - 1492 empresas carregadas.
+2025-09-17 10:26:52,930 - INFO - Página 1: 255 usuários.
+2025-09-17 10:26:52,930 - INFO - Total de usuários: 255
+2025-09-17 10:26:52,934 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:52] "GET / HTTP/1.1" 200 -
+2025-09-17 10:26:53,153 - INFO - Request Body: b'{"email": "felipe.caceraghi@gofurthergroup.com.br", "password": "Estopinha1@"}'
+2025-09-17 10:26:53,153 - INFO - Request Headers: {'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'Content-Type': 'application/json;charset=UTF-8', 'Content-Length': '78'}
+2025-09-17 10:26:53,153 - INFO - Response Status: 200
+2025-09-17 10:26:53,153 - INFO - Response Text: 
+2025-09-17 10:26:53,153 - INFO - Token obtido com sucesso.
+2025-09-17 10:26:54,940 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:54] "GET /processing_status HTTP/1.1" 200 -
+2025-09-17 10:26:55,260 - INFO - 1491 empresas carregadas.
+2025-09-17 10:26:56,031 - INFO - Página 1: 255 usuários.
+2025-09-17 10:26:56,032 - INFO - Total de usuários: 254
+2025-09-17 10:26:56,032 - INFO - Processando 1491 empresas e 254 usuários
+2025-09-17 10:26:56,034 - INFO - [PROCESSAMENTO] Buscando tarefas com vencimento hoje: 17/09/2025
+2025-09-17 10:26:56,939 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:56] "GET /processing_status HTTP/1.1" 200 -
+2025-09-17 10:26:57,600 - INFO - Página 1: 145 tarefas retornadas.
+2025-09-17 10:26:58,544 - INFO - Página 2: 0 tarefas retornadas.
+2025-09-17 10:26:58,544 - INFO - Total de tarefas coletadas: 145
+2025-09-17 10:26:58,545 - INFO - Encontradas 0 tarefas de cobrança de documentos com vencimento hoje
+2025-09-17 10:26:58,545 - INFO - ===== RESUMO DA EXECUÇÃO =====
+2025-09-17 10:26:58,545 - INFO - Tempo Total: 7.23 seg
+2025-09-17 10:26:58,545 - INFO - Empresas Carregadas: 1491
+2025-09-17 10:26:58,546 - INFO - Empresas com Documentos Processados: 0
+2025-09-17 10:26:58,546 - INFO - Usuários Processados: 254
+2025-09-17 10:26:58,546 - INFO - Tarefas Alertadas: 0
+2025-09-17 10:26:58,546 - INFO - Alertas Enviados: 0
+2025-09-17 10:26:58,546 - INFO - Tarefas Processadas com Sucesso: 0
+2025-09-17 10:26:58,546 - INFO - Documentos Baixados: 0
+2025-09-17 10:26:58,546 - INFO - Log de execução salvo em: logs/execucao_20250917_102658.txt
+2025-09-17 10:26:58,546 - INFO - Execução finalizada com sucesso.
+2025-09-17 10:26:58,546 - INFO - Resumo da execução salvo em: logs/last_run_summary_20250917_102658.json
+2025-09-17 10:26:58,940 - INFO - 127.0.0.1 - - [17/Sep/2025 10:26:58] "GET /processing_status HTTP/1.1" 200 -

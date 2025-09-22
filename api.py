@@ -2,7 +2,7 @@
 import requests, time, os, re
 from datetime import datetime
 from logger_config import logger
-from file_utils import sanitize_filename, truncate_name, iso_to_mes_ano, safe_move_folder, count_files_in_folder, monta_caminho_contabil, monta_caminho_fiscal, extract_all_archives, extract_zip
+from file_utils import sanitize_filename, truncate_name, iso_to_mes_ano, safe_move_folder, count_files_in_folder, monta_caminho_contabil, monta_caminho_fiscal, extract_all_archives, extract_archive
 from config import DEBUG_MODE, DOWNLOAD_BASE_DIR, GESTTA_EMAIL, GESTTA_PASSWORD
 import shutil
 
@@ -37,7 +37,7 @@ def get_token(email=None, password=None):
     try:
         # Usar sessão com verificação SSL desativada
         session = create_session()
-        response = session.post(login_url, json=payload, headers=headers)
+        response = session.post(login_url, json=payload, headers=headers, timeout=30)
         logger.info(f"Request Body: {response.request.body}")
         logger.info(f"Request Headers: {response.request.headers}")
         logger.info(f"Response Status: {response.status_code}")
@@ -93,7 +93,10 @@ def get_all_users(token, user_ids=None):
             params = {"page": page, "limit": 1000}
             response = session.get(url, headers=headers, params=params)
             if response.status_code != 200:
-                logger.error(f"Erro na página {page}: {response.status_code}")
+                if response.status_code == 401:
+                    logger.error(f"Token expirado ou inválido ao buscar usuários na página {page}: {response.status_code}")
+                else:
+                    logger.error(f"Erro na página {page}: {response.status_code}")
                 break
             data = response.json()
             docs = data.get("docs", [])
@@ -531,7 +534,8 @@ def download_all_task_documents(token, task_id, customer_id, target_folder):
                                         logger.info(f"Usando caminho alternativo: {zip_path}")
                                     
                                     # Baixar o arquivo
-                                    download_resp = session.get(download_url, stream=True, timeout=300)
+                                    logger.info(f"[DEBUG] Attempting to download from: {download_url}")
+                                    download_resp = session.get(download_url, stream=True, timeout=3600)
                                     
                                     if download_resp.status_code == 200:
                                         try:
@@ -679,28 +683,19 @@ def process_task_documents(token, task_detail, debug_mode=False, download_dir=No
         logger.error(f"Arquivo ZIP não encontrado após download: {zip_file_path}")
         return 0
     
-    logger.info(f"[DOWNLOAD] Extraindo arquivo ZIP de documentos: {zip_file_path}")
+    logger.info(f"[DOWNLOAD] Iniciando extração de arquivos em: {task_folder}")
     try:
-        # Usar nossa função extract_zip aprimorada que trata nomes longos
-        extraction_success = extract_zip(zip_file_path, task_folder, remove_original=True, max_filename_length=100)
-        
-        if not extraction_success:
-            logger.error(f"Falha ao extrair o arquivo ZIP: {zip_file_path}")
-            return 0
-            
-        logger.info(f"[DOWNLOAD] Arquivo ZIP extraído com sucesso e removido")
-        
-        logger.info(f"[DOWNLOAD] Iniciando extração recursiva de arquivos compactados dentro da pasta...")
+        # A função extract_all_archives vai encontrar o ZIP baixado e quaisquer outros arquivos
         extract_all_archives(task_folder)
-        logger.info(f"[DOWNLOAD] Extração recursiva concluída")
+        logger.info(f"[DOWNLOAD] Extração concluída em {task_folder}")
         
         final_count = count_files_in_folder(task_folder)
         
         if final_count == 0:
-            logger.warning(f"Nenhum arquivo encontrado após extrair o ZIP para a tarefa {task_id}")
+            logger.warning(f"Nenhum arquivo encontrado após a extração para a tarefa {task_id}")
             return 0
             
-        logger.info(f"[DOWNLOAD] {final_count} arquivos extraídos do ZIP para a tarefa {task_id}")
+        logger.info(f"[DOWNLOAD] {final_count} arquivos no total para a tarefa {task_id}")
         
         destino_base = path_func(customer_code, mes_ano)
         if destino_base:
@@ -722,7 +717,7 @@ def process_task_documents(token, task_detail, debug_mode=False, download_dir=No
             return final_count
             
     except Exception as e:
-        logger.error(f"Erro ao extrair o arquivo ZIP {zip_file_path}: {e}")
+        logger.error(f"Erro durante o processo de extração em {task_folder}: {e}")
         return 0
 
 def update_task_status(token, task_id, new_status="DONE"):
