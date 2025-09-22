@@ -124,20 +124,40 @@
                     </div>
                     <div class="tab-pane fade" id="process" role="tabpanel">
                         <h5>Processar</h5>
-                        <div class="row g-2 align-items-end mb-3">
-                            <div class="col-auto">
-                                <label class="form-label mb-0 small">Data Início</label>
-                                <input type="text" id="startDateInput" class="form-control form-control-sm" placeholder="Selecione a data..."/>
+                        
+                        <!-- Cronômetro da Próxima Execução Automática -->
+                        <div class="card mb-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                            <div class="card-body text-center">
+                                <h6 class="card-title mb-3"><i class="fas fa-robot"></i> Execução Automática - Diário às 8:30</h6>
+                                <div id="nextExecutionCountdown" style="font-size: 1.5rem; font-weight: bold; margin: 10px 0;">
+                                    <i class="fas fa-spinner fa-spin"></i> Carregando...
+                                </div>
+                                <small id="nextExecutionDate" class="text-light">Carregando próxima execução...</small>
                             </div>
-                            <div class="col-auto">
-                                <label class="form-label mb-0 small">Data Fim</label>
-                                <input type="text" id="endDateInput" class="form-control form-control-sm" placeholder="Selecione a data..."/>
+                        </div>
+                        
+                        <!-- Processamento Manual -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="mb-0"><i class="fas fa-play-circle"></i> Processamento Manual</h6>
                             </div>
-                            <div class="col-auto">
-                                <button type="button" id="startProcessingBtn" class="btn btn-warning btn-lg">Processar Tarefas</button>
-                            </div>
-                            <div class="col">
-                                <div id="processingStatus" class="text-end">&nbsp;</div>
+                            <div class="card-body">
+                                <div class="row g-2 align-items-end mb-3">
+                                    <div class="col-auto">
+                                        <label class="form-label mb-0 small">Data Início</label>
+                                        <input type="text" id="startDateInput" class="form-control form-control-sm" placeholder="Selecione a data..."/>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="form-label mb-0 small">Data Fim</label>
+                                        <input type="text" id="endDateInput" class="form-control form-control-sm" placeholder="Selecione a data..."/>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="button" id="startProcessingBtn" class="btn btn-warning btn-lg">Processar Tarefas</button>
+                                    </div>
+                                    <div class="col">
+                                        <div id="processingStatus" class="text-end">&nbsp;</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -197,6 +217,100 @@ document.addEventListener('DOMContentLoaded', function() {
             defaultDate: "today",
             locale: "pt"
         });
+        
+        // Função para atualizar cronômetro da próxima execução
+        let countdownInterval;
+        
+        function updateNextExecutionCountdown() {
+            fetch('/next_execution')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('nextExecutionCountdown').innerHTML = 
+                            '<i class="fas fa-exclamation-triangle"></i> Erro ao carregar';
+                        document.getElementById('nextExecutionDate').textContent = 
+                            'Erro: ' + data.error;
+                        return;
+                    }
+                    
+                    const days = data.days;
+                    const hours = String(data.hours).padStart(2, '0');
+                    const minutes = String(data.minutes).padStart(2, '0');
+                    const seconds = String(data.seconds).padStart(2, '0');
+                    
+                    let countdownText = '';
+                    if (days > 0) {
+                        countdownText = `${days} dia${days > 1 ? 's' : ''}, ${hours}:${minutes}:${seconds}`;
+                    } else {
+                        countdownText = `${hours}:${minutes}:${seconds}`;
+                    }
+                    
+                    document.getElementById('nextExecutionCountdown').innerHTML = 
+                        `<i class="fas fa-clock"></i> ${countdownText}`;
+                    document.getElementById('nextExecutionDate').textContent = 
+                        `Próxima execução: ${data.next_run_formatted}`;
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar próxima execução:', error);
+                    document.getElementById('nextExecutionCountdown').innerHTML = 
+                        '<i class="fas fa-wifi"></i> Sem conexão';
+                    document.getElementById('nextExecutionDate').textContent = 
+                        'Erro de conexão';
+                });
+        }
+        
+        // Iniciar cronômetro quando a aba "Processar" estiver ativa
+        function startCountdownIfProcessTab() {
+            const processTab = document.getElementById('process');
+            if (processTab && processTab.classList.contains('show') && processTab.classList.contains('active')) {
+                if (!countdownInterval) {
+                    updateNextExecutionCountdown(); // Atualizar imediatamente
+                    countdownInterval = setInterval(updateNextExecutionCountdown, 1000); // Atualizar a cada segundo
+                }
+            } else {
+                // Parar cronômetro se não estiver na aba "Processar"
+                if (countdownInterval) {
+                    clearInterval(countdownInterval);
+                    countdownInterval = null;
+                }
+            }
+        }
+        
+        // Escutar mudanças de aba
+        document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+            tab.addEventListener('shown.bs.tab', function(event) {
+                console.log('Tab changed to:', event.target.id);
+                startCountdownIfProcessTab();
+            });
+        });
+        
+        // Iniciar cronômetro imediatamente se estiver na aba "Processar"
+        function initializeCountdown() {
+            console.log('Initializing countdown...');
+            updateNextExecutionCountdown();
+            if (!countdownInterval) {
+                countdownInterval = setInterval(updateNextExecutionCountdown, 1000);
+                console.log('Countdown interval started');
+            }
+        }
+        
+        // Verificar se a aba "Processar" está ativa ao carregar a página
+        setTimeout(function() {
+            const processTab = document.getElementById('process-tab');
+            if (processTab && processTab.classList.contains('active')) {
+                console.log('Process tab is active, starting countdown');
+                initializeCountdown();
+            }
+        }, 500);
+        
+        // Também iniciar quando clicar na aba "Processar"
+        const processTabBtn = document.getElementById('process-tab');
+        if (processTabBtn) {
+            processTabBtn.addEventListener('click', function() {
+                console.log('Process tab clicked');
+                setTimeout(initializeCountdown, 200);
+            });
+        }
 
         // Start processing and poll status (UI updates)
         document.getElementById('startProcessingBtn').addEventListener('click', async function () {

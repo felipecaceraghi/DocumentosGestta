@@ -209,6 +209,52 @@ def processing_status():
     status = globals().get('_processing_status', {'running': False, 'success': None, 'message': 'Nenhuma execução'} )
     return jsonify(status)
 
+@app.route('/next_execution')
+def next_execution():
+    """Retorna informações sobre a próxima execução automática"""
+    from flask import jsonify
+    from datetime import datetime, timedelta
+    
+    try:
+        now = datetime.now()
+        
+        # Se ainda não passou das 8:30 hoje, próxima execução é hoje
+        if now.hour < 8 or (now.hour == 8 and now.minute < 30):
+            next_run_date = now.date()
+        else:
+            # Senão, próxima execução é amanhã
+            next_run_date = (now + timedelta(days=1)).date()
+        
+        # Definir hora para 8:30
+        next_run = datetime.combine(next_run_date, datetime.min.time().replace(hour=8, minute=30))
+        
+        # Calcular tempo restante
+        time_diff = next_run - now
+        
+        if time_diff.total_seconds() <= 0:
+            # Se passou do horário, recalcular para amanhã
+            next_run_date = (now + timedelta(days=1)).date()
+            next_run = datetime.combine(next_run_date, datetime.min.time().replace(hour=8, minute=30))
+            time_diff = next_run - now
+        
+        days = time_diff.days
+        seconds = int(time_diff.seconds)
+        hours, remainder = divmod(seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        
+        return jsonify({
+            'next_run': next_run.strftime('%Y-%m-%d %H:%M:%S'),
+            'next_run_formatted': next_run.strftime('%d/%m/%Y às %H:%M'),
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds,
+            'total_seconds': int(time_diff.total_seconds())
+        })
+    except Exception as e:
+        logger.error(f"Erro ao calcular próxima execução: {e}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
     if request.method == 'POST':

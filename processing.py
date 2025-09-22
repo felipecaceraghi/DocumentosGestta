@@ -324,14 +324,21 @@ def realizar_processamento(start_date=None, end_date=None, force_execution=False
 # The hourly verification function was removed — use realizar_processamento directly.
 
 def programar_verificacoes():
-    schedule.every().day.at("05:00").do(lambda: realizar_processamento())
-    logger.info("Sistema iniciado com verificação diária configurada.")
-    logger.info("Primeira execução iniciando agora...")
+    # Configurar para executar todos os dias às 8:30 com data atual
+    schedule.every().day.at("08:30").do(lambda: realizar_processamento(
+        start_date=datetime.now().strftime("%Y-%m-%d"),
+        end_date=datetime.now().strftime("%Y-%m-%d")
+    ))
+    
+    logger.info("🤖 Sistema iniciado com processamento automático às 08:30 diariamente")
+    logger.info("📅 O robô processará tarefas da data atual automaticamente")
+    logger.info("⏰ Próxima execução: todos os dias às 08:30")
     
     import sys
     start_date = None
     end_date = None
     
+    # Verificar se foram passadas datas via argumentos de linha de comando
     if len(sys.argv) > 1:
         for i, arg in enumerate(sys.argv[1:], 1):
             if arg == "--start-date" and i < len(sys.argv) - 1:
@@ -339,12 +346,19 @@ def programar_verificacoes():
             elif arg == "--end-date" and i < len(sys.argv) - 1:
                 end_date = sys.argv[i + 1]
     
+    # Se foram fornecidas datas, executar com essas datas
     if start_date or end_date:
-        logger.info(f"Executando com datas personalizadas: {start_date or 'hoje'} até {end_date or start_date or 'hoje'}")
+        logger.info(f"🎯 Executando AGORA com datas personalizadas: {start_date or 'hoje'} até {end_date or start_date or 'hoje'}")
         realizar_processamento(start_date, end_date)
     else:
-        realizar_processamento()
-        
+        # Senão, executar uma vez com a data atual
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        logger.info(f"🚀 Executando AGORA com data atual: {current_date}")
+        realizar_processamento(start_date=current_date, end_date=current_date)
+    
+    logger.info("⏱️ Aguardando próxima execução programada...")
+    
+    # Loop principal do scheduler
     while True:
         schedule.run_pending()
-        pytime.sleep(60)  # Aqui mudamos de time.sleep() para pytime.sleep()
+        pytime.sleep(60)  # Verificar a cada minuto

@@ -25,45 +25,51 @@ except ImportError:
 logger = logging.getLogger('scheduler')
 
 def execute_main():
-    """Executa o script main.py e registra o resultado"""
+    """Executa o processamento com a data atual"""
     try:
-        logger.info("Iniciando execução do main.py...")
+        logger.info("🤖 Iniciando processamento automático às 8:30...")
+        
+        # Obter data atual no formato YYYY-MM-DD
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        logger.info(f"📅 Processando tarefas para a data: {current_date}")
+        
         script_dir = os.path.dirname(os.path.abspath(__file__))
         main_path = os.path.join(script_dir, 'main.py')
         
-        # Executa o processo do main.py
-        result = subprocess.run([sys.executable, main_path], 
-                               capture_output=True, 
-                               text=True)
+        # Executa o processo do main.py com a data atual
+        result = subprocess.run([
+            sys.executable, main_path, 
+            '--start-date', current_date,
+            '--end-date', current_date
+        ], 
+        capture_output=True, 
+        text=True)
         
         if result.returncode == 0:
-            logger.info("Execução do main.py concluída com sucesso")
+            logger.info("✅ Processamento automático concluído com sucesso")
             if result.stdout:
                 logger.debug(f"Saída: {result.stdout}")
         else:
-            logger.error(f"Erro ao executar main.py: código {result.returncode}")
+            logger.error(f"❌ Erro no processamento automático: código {result.returncode}")
             if result.stderr:
                 logger.error(f"Erro: {result.stderr}")
     
     except Exception as e:
-        logger.exception(f"Erro durante a execução do main.py: {str(e)}")
+        logger.exception(f"💥 Erro durante o processamento automático: {str(e)}")
 
 def calculate_next_run():
-    """Calcula o próximo horário de execução (5:00 no próximo dia útil)"""
+    """Calcula o próximo horário de execução (8:30 todos os dias)"""
     now = datetime.now()
-    # Determinar o próximo dia útil
-    if now.hour < 5 and now.weekday() < 5:  # Antes das 5:00 e dia útil (0-4 = seg-sex)
-        next_run_date = now.date()
-    elif now.weekday() < 4:  # Segunda a quinta, próximo dia é útil
-        next_run_date = (now + timedelta(days=1)).date()
-    elif now.weekday() == 4:  # Sexta, próximo dia útil é segunda
-        next_run_date = (now + timedelta(days=3)).date()
-    else:  # Final de semana
-        days_until_monday = 7 - now.weekday()
-        next_run_date = (now + timedelta(days=days_until_monday)).date()
     
-    # Definir hora para 5:00
-    next_run = datetime.combine(next_run_date, datetime.min.time().replace(hour=5))
+    # Se ainda não passou das 8:30 hoje, próxima execução é hoje
+    if now.hour < 8 or (now.hour == 8 and now.minute < 30):
+        next_run_date = now.date()
+    else:
+        # Senão, próxima execução é amanhã
+        next_run_date = (now + timedelta(days=1)).date()
+    
+    # Definir hora para 8:30
+    next_run = datetime.combine(next_run_date, datetime.min.time().replace(hour=8, minute=30))
     return next_run
 
 def display_countdown(stop_event):
@@ -86,7 +92,7 @@ def display_countdown(stop_event):
             minutes, seconds = divmod(remainder, 60)
             
             # Limpa a linha anterior e imprime o contador
-            sys.stdout.write(f"\rPróxima execução em: {days} dias, {hours:02d}:{minutes:02d}:{seconds:02d} (às 05:00 de {next_run.strftime('%d/%m/%Y')})")
+            sys.stdout.write(f"\r⏰ Próxima execução em: {days} dias, {hours:02d}:{minutes:02d}:{seconds:02d} (às 08:30 de {next_run.strftime('%d/%m/%Y')})")
             sys.stdout.flush()
             
             # Atualizar a cada segundo
@@ -95,33 +101,36 @@ def display_countdown(stop_event):
         logger.exception(f"Erro no cronômetro: {str(e)}")
 
 def main():
-    """Configura o scheduler para executar main.py nos dias e horários especificados"""
+    """Configura o scheduler para executar processamento todos os dias às 8:30"""
     try:
-        logger.info("Iniciando o scheduler...")
+        logger.info("🚀 Iniciando o scheduler de processamento automático...")
         scheduler = BackgroundScheduler()
         job_id = 'execute_main_job'
         
-        # Configurar para executar às 5:00 da manhã de segunda a sexta
+        # Configurar para executar às 8:30 da manhã TODOS OS DIAS
         scheduler.add_job(
             execute_main,
             CronTrigger(
-                day_of_week='mon-fri',  # De segunda a sexta
-                hour=5, 
-                minute=0
+                hour=8, 
+                minute=30
             ),
             id=job_id,
-            name='Execução do script main.py às 5:00',
+            name='Processamento automático de documentos Gestta às 8:30',
             replace_existing=True
         )
         
         # Iniciar o scheduler
         scheduler.start()
-        logger.info("Scheduler iniciado. Próxima execução será às 05:00 no próximo dia útil.")
+        logger.info("📅 Scheduler configurado: Execução DIÁRIA às 08:30 com data atual")
         
         # Mostrar o dia da semana atual para referência
         dias = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado', 'Domingo']
         dia_atual = dias[datetime.now().weekday()]
-        logger.info(f"Hoje é {dia_atual}")
+        logger.info(f"📆 Hoje é {dia_atual}")
+        
+        # Mostrar próxima execução
+        next_run = calculate_next_run()
+        logger.info(f"🎯 Próxima execução: {next_run.strftime('%d/%m/%Y às %H:%M')}")
         
         # Iniciar o cronômetro em uma thread separada
         stop_event = threading.Event()
@@ -139,10 +148,10 @@ def main():
         except (KeyboardInterrupt, SystemExit):
             stop_event.set()  # Sinaliza para o cronômetro parar
             scheduler.shutdown()
-            print("\nScheduler interrompido pelo usuário.")
+            print("\n⏹️  Scheduler interrompido pelo usuário.")
         
     except Exception as e:
         logger.exception(f"Erro no scheduler: {str(e)}")
 
 if __name__ == "__main__":
-    main()  
+    main()
